@@ -170,6 +170,7 @@ class GamelabJr < Gamelab
   <block type="text_join_simple" inputcount="2" />
   <block type="text" />
 </category>
+<category name="Behaviors" custom="Behavior" />
     XML
   end
 

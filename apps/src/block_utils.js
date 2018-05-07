@@ -647,13 +647,14 @@ exports.createJsWrapperBlockCreator = function (
         if (inline === false) {
           addInputs(blockly, this, args);
         } else {
+          const formattedInputs = determineInputs(blockText, inputs, strictTypes);
           interpolateInputs(
             blockly,
             this,
-            determineInputs(blockText, inputs, strictTypes),
+            formattedInputs,
             customInputTypes,
           );
-          this.setInputsInline(true);
+          this.setInputsInline(formattedInputs.length > 1);
         }
 
         if (returnType) {
@@ -692,7 +693,7 @@ exports.createJsWrapperBlockCreator = function (
           return "undefined";
         }
         return value;
-      });
+      }).filter(value => value !== undefined);
 
       if (simpleValue) {
         return [
