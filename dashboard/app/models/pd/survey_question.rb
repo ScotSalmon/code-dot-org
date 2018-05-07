@@ -11,6 +11,7 @@
 #  question_type :string(255)      not null
 #  question_name :string(255)      not null
 #  order         :integer          not null
+#  details       :text(65535)      not null
 #
 # Indexes
 #

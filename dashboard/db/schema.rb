@@ -753,6 +753,7 @@ ActiveRecord::Schema.define(version: 20180504225917) do
     t.string   "question_type",               null: false
     t.string   "question_name",               null: false, comment: "Unique name to identify a question within a form, but not as strong as id since it can change"
     t.integer  "order",                       null: false, comment: "Order the question appears on the form, starting with 1"
+    t.text     "details",       limit: 65535, null: false, comment: "Additional details (JSON) for complex question types"
     t.index ["form_id"], name: "index_pd_survey_questions_on_form_id", using: :btree
     t.index ["question_id"], name: "index_pd_survey_questions_on_question_id", using: :btree
   end
