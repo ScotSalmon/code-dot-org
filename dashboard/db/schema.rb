@@ -745,15 +745,15 @@ ActiveRecord::Schema.define(version: 20180504225917) do
   end
 
   create_table "pd_survey_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer  "form_id",                     null: false
-    t.string   "question_id",                 null: false
+    t.bigint   "form_id",                     null: false
+    t.bigint   "question_id",                 null: false
     t.text     "question_text", limit: 65535, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "question_type",               null: false
     t.string   "question_name",               null: false, comment: "Unique name to identify a question within a form, but not as strong as id since it can change"
     t.integer  "order",                       null: false, comment: "Order the question appears on the form, starting with 1"
-    t.text     "details",       limit: 65535, null: false, comment: "Additional details (JSON) for complex question types"
+    t.text     "details",       limit: 65535,              comment: "Additional details (JSON) for complex question types"
     t.index ["form_id"], name: "index_pd_survey_questions_on_form_id", using: :btree
     t.index ["question_id"], name: "index_pd_survey_questions_on_question_id", using: :btree
   end
@@ -793,8 +793,8 @@ ActiveRecord::Schema.define(version: 20180504225917) do
   end
 
   create_table "pd_workshop_daily_surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer "form_id",                      null: false
-    t.integer "submission_id",                null: false
+    t.bigint  "form_id",                      null: false
+    t.bigint  "submission_id",                null: false
     t.integer "user_id",                      null: false
     t.integer "pd_session_id"
     t.integer "pd_workshop_id",               null: false

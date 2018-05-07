@@ -9,7 +9,7 @@ class AddQuestionTypeAndParentIdToPdSurveyQuestions < ActiveRecord::Migration[5.
       t.column :order, :integer, null: false,
         comment: 'Order the question appears on the form, starting with 1'
 
-      t.column :details, :text, null: false,
+      t.column :details, :text, null: true,
         comment: 'Additional details (JSON) for complex question types'
     end
 
@@ -20,9 +20,13 @@ class AddQuestionTypeAndParentIdToPdSurveyQuestions < ActiveRecord::Migration[5.
     reversible do |dir|
       dir.up do
         change_column :pd_survey_questions, :question_text, :text, null: false
+        change_column :pd_survey_questions, :question_id, :integer, limit: 8
+        change_column :pd_survey_questions, :form_id, :integer, limit: 8
       end
       dir.down do
         change_column :pd_survey_questions, :question_text, :string, null: true
+        change_column :pd_survey_questions, :question_id, :string
+        change_column :pd_survey_questions, :form_id, :integer
       end
     end
   end

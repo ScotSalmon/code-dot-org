@@ -4,14 +4,14 @@
 #
 #  id            :integer          not null, primary key
 #  form_id       :integer          not null
-#  question_id   :string(255)      not null
+#  question_id   :integer          not null
 #  question_text :text(65535)      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  question_type :string(255)      not null
 #  question_name :string(255)      not null
 #  order         :integer          not null
-#  details       :text(65535)      not null
+#  details       :text(65535)
 #
 # Indexes
 #
