@@ -21,5 +21,15 @@
 #  index_pd_workshop_daily_surveys_on_user_id         (user_id)
 #
 
-class Pd::WorkshopDailySurvey < ActiveRecord::Base
+module Pd
+  class WorkshopDailySurvey < ActiveRecord::Base
+    include Form
+
+    belongs_to :user
+    belongs_to :pd_session, class_name: 'Pd::Session'
+    belongs_to :pd_workshop, class_name: 'Pd::Workshop'
+
+
+
+  end
 end

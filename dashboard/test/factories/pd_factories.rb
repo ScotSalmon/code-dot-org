@@ -988,4 +988,14 @@ FactoryGirl.define do
     association :pd_application, factory: :pd_facilitator1819_application
     form_data {build(:pd_fit_weekend1819_registration_hash, status).to_json}
   end
+
+  factory :pd_survey_question, class: 'Pd::SurveyQuestion' do
+    form_id {(Pd::SurveyQuestion.maximum(:form_id) || 0) + 1}
+    sequence(:question_id)
+    question_text 'What is your name?'
+    question_type 'text'
+    sequence(:question_name) {|n| "question#{n}"}
+    sequence(:order)
+  end
+
 end

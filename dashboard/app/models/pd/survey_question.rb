@@ -19,5 +19,8 @@
 #  index_pd_survey_questions_on_question_id  (question_id)
 #
 
-class Pd::SurveyQuestion < ApplicationRecord
+module Pd
+  class SurveyQuestion < ApplicationRecord
+    include JotFormBackedQuestion
+  end
 end
