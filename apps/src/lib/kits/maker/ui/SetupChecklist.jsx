@@ -281,7 +281,7 @@ export default class SetupChecklist extends Component {
               stepStatus={this.state[STATUS_BOARD_COMPONENTS]}
               stepName="Board components usable"
             >
-              Oh no! Something unexpected went wrong while verifying the board components.
+              Oh no Scot! Something unexpected went wrong while verifying the board components.
               <br/>You should make sure your board has the right firmware sketch installed.
               You can <a href="https://learn.adafruit.com/circuit-playground-firmata/overview">install the Circuit Playground Firmata sketch with these instructions</a>.
               {this.surveyLink()}

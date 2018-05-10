@@ -1,10 +1,8 @@
 /** @file Board controller for Arduino Uno */
 /* global SerialPort */ // Maybe provided by the Code.org Browser
-import _ from 'lodash';
 import {EventEmitter} from 'events'; // provided by webpack's node-libs-browser
 import ChromeSerialPort from 'chrome-serialport';
 import five from '@code-dot-org/johnny-five';
-import Firmata from 'firmata';
 import {
   createArduinoUnoComponents,
   destroyArduinoUnoComponents,
@@ -14,9 +12,10 @@ import {
   CP_COMMAND,
   J5_CONSTANTS,
 } from './UnoConstants';
-import Button from './Button';
 import Led from './Led';
 import {isNodeSerialAvailable} from './portScanning';
+
+var Firmata = require("firmata");
 
 // Polyfill node's process.hrtime for the browser, gets used by johnny-five.
 process.hrtime = require('browser-process-hrtime');
@@ -34,13 +33,11 @@ function Uno(options) {
     handlers: {},
   };
 
-  priv.set(this, state);
-
   // Firmata stores sysex response handlers statically and throws an error
   // if you register over one that already exists, so only do this once, ever.
   if (!Uno.hasRegisteredSysexResponse) {
-    this.on("ready", function() {
-      this.sysexResponse(CP_COMMAND, function(data) {
+    this.on("ready", function () {
+      this.sysexResponse(CP_COMMAND, function (data) {
         var bytes = Firmata.decode(data);
         var command = bytes.shift();
         var handler = state.handlers[command];
@@ -58,7 +55,7 @@ Uno.prototype = Object.create(Firmata.board.prototype, {
   constructor: {
     value: Uno
   }
-})
+});
 
 /**
  * Controller interface for an Arduino Uno board using
@@ -233,7 +230,7 @@ export default class ArduinoUnoBoard extends EventEmitter {
         setTimeout(resolve, delay);
       });
     }
-    
+
     return Promise.resolve()
       .then(() => runFuncAndDelay(led.on(), 80))
       .then(() => runFuncAndDelay(led.off(), 80));

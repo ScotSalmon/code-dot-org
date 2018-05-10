@@ -4,7 +4,8 @@
  */
 import {getStore} from '../../../redux';
 import trackEvent from '../../../util/trackEvent';
-import CircuitPlaygroundBoard from './CircuitPlaygroundBoard';
+//import CircuitPlaygroundBoard from './CircuitPlaygroundBoard';
+import ArduinoUnoBoard from './ArduinoUnoBoard';
 import FakeBoard from './FakeBoard';
 import * as commands from './commands';
 import * as dropletConfig from './dropletConfig';
@@ -139,7 +140,8 @@ function getBoard() {
     return Promise.resolve(new FakeBoard());
   } else {
     return findPortWithViableDevice()
-        .then(port => new CircuitPlaygroundBoard(port));
+        .then(port => new ArduinoUnoBoard(port));
+//        .then(port => new CircuitPlaygroundBoard(port));
   }
 }
 

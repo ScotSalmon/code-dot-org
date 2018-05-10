@@ -1,5 +1,6 @@
 /** @file Stubbable core setup check behavior for the setup page. */
-import CircuitPlaygroundBoard from '../CircuitPlaygroundBoard';
+//import CircuitPlaygroundBoard from '../CircuitPlaygroundBoard';
+import ArduinoUnoBoard from '../ArduinoUnoBoard';
 import {ensureAppInstalled, findPortWithViableDevice} from '../portScanning';
 import {isCodeOrgBrowser, isChrome, gtChrome33, isChromeOS} from './browserChecks';
 
@@ -47,7 +48,8 @@ export default class SetupChecker {
    * @return {Promise}
    */
   detectCorrectFirmware() {
-    this.boardController = new CircuitPlaygroundBoard(this.port);
+//    this.boardController = new CircuitPlaygroundBoard(this.port);
+    this.boardController = new ArduinoUnoBoard(this.port);
     return this.boardController.connectToFirmware();
   }
 

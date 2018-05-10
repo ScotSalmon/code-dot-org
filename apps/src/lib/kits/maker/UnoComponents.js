@@ -1,11 +1,5 @@
-import {
-  CP_COMMAND,
-  CP_ACCEL_STREAM_ON
-} from './PlaygroundConstants';
-import _ from 'lodash';
 import five from '@code-dot-org/johnny-five';
 import Led from './Led';
-import experiments from '../../../util/experiments';
 
 /**
  * Initializes a set of Johnny-Five component instances for the currently
@@ -17,7 +11,7 @@ import experiments from '../../../util/experiments';
  */
 export function createArduinoUnoComponents(board) {
   return Promise.all([
-  ]).then(([]) => {
+  ]).then(() => {
     return {
       led: new Led({board, pin: 13})
     };
